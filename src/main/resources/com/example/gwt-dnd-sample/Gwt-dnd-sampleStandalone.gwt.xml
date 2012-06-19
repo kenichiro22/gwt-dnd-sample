@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name='com.example.gwt-dnd-sample.Gwt-dnd-sample'/>
+	<entry-point class='com.example.gwt-dnd-sample.Gwt-dnd-sampleStandalone' />
+</module>
