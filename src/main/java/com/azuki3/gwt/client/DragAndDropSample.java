@@ -23,9 +23,12 @@ public class DragAndDropSample extends Composite {
     @UiField
     HTMLPanel container;
     private Map<String, Label> labels = new HashMap<String, Label>();
+    private HTML status;
 
     public DragAndDropSample() {
         initWidget(uiBinder.createAndBindUi(this));
+
+        status = new HTML();
 
         for (int i = 0; i < 4; i++) {
             FluidRow row = new FluidRow();
@@ -45,6 +48,7 @@ public class DragAndDropSample extends Composite {
                         event.setData("text", id);
                         event.setData("sourceId", id);
 
+                        appendStatus("start drag : " + id);
                     }
                 });
 
@@ -53,6 +57,7 @@ public class DragAndDropSample extends Composite {
                     public void onDragOver(DragOverEvent event) {
                         if (!l.getStyleName().contains("dnd-label-over")) {
                             l.addStyleName("dnd-label-over");
+                            appendStatus("drag over : " + id);
                         }
                     }
                 });
@@ -61,6 +66,8 @@ public class DragAndDropSample extends Composite {
 
                     public void onDragLeave(DragLeaveEvent event) {
                         l.removeStyleName("dnd-label-over");
+                        appendStatus("drag leave : " + id);
+
                     }
                 });
 
@@ -70,6 +77,7 @@ public class DragAndDropSample extends Composite {
                         event.preventDefault();
 
                         l.removeStyleName("dnd-label-over");
+                        appendStatus("drop : " + id);
 
 
                         Label sourceLabel = labels.get(event.getData("sourceId"));
@@ -87,5 +95,10 @@ public class DragAndDropSample extends Composite {
             row.getElement().getStyle().setMarginBottom(10, Unit.PX);
             container.add(row);
         }
+        container.add(status);
+    }
+
+    private void appendStatus(String str) {
+        status.setHTML(str + "<br>" + status.getHTML());
     }
 }
