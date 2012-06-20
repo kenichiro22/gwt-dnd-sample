@@ -4,17 +4,16 @@
  */
 package com.azuki3.gwt.client;
 
-import com.google.gwt.user.client.ui.Composite;
-
 /**
  *
  * @author ktana
  */
-public class GwtQuerySample extends Composite{
-    
-    
-    
-    public GwtQuerySample(){
+public class GwtQuerySample extends AbstractSample {
+
+    public GwtQuerySample() {
+        initWidget(this.panel);
+        init();
+        
         
     }
 }
