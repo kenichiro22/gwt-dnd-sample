@@ -1,34 +1,27 @@
 package com.azuki3.gwt.client;
 
-import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.FluidRow;
 import com.github.gwtbootstrap.client.ui.Modal;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.*;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Label;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DragAndDropSample extends Composite {
+public class NativeSample extends Composite {
 
-    private static DragAndDropSampleUiBinder uiBinder = GWT.create(DragAndDropSampleUiBinder.class);
-
-    interface DragAndDropSampleUiBinder extends
-            UiBinder<Widget, DragAndDropSample> {
-    }
-    @UiField
-    HTMLPanel container;
     private Map<String, Label> labels = new HashMap<String, Label>();
     private HTML status;
 
-    public DragAndDropSample() {
-        initWidget(uiBinder.createAndBindUi(this));
+    HTMLPanel panel = new HTMLPanel("");
+
+    public NativeSample() {
+        initWidget(this.panel);
 
         status = new HTML();
 
@@ -95,9 +88,8 @@ public class DragAndDropSample extends Composite {
                 row.add(col);
             }
             row.getElement().getStyle().setMarginBottom(10, Unit.PX);
-            container.add(row);
+            panel.add(row);
         }
-        container.add(status);
 
         if (!DragDropEventBase.isSupported()) {
             Modal alert = new Modal(false);
@@ -107,7 +99,9 @@ public class DragAndDropSample extends Composite {
             
             alert.show();
         }
+        panel.add(status);
     }
+
 
     private void appendStatus(String str) {
         status.setHTML(str + "<br>" + status.getHTML());
