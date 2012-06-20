@@ -6,36 +6,23 @@ import com.github.gwtbootstrap.client.ui.Modal;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
-import java.util.HashMap;
-import java.util.Map;
 
-public class NativeSample extends Composite {
-
-    private Map<String, Label> labels = new HashMap<String, Label>();
-    private HTML status;
-
-    HTMLPanel panel = new HTMLPanel("");
+public class NativeSample extends AbstractSample {
 
     public NativeSample() {
         initWidget(this.panel);
+        init();
 
-        status = new HTML();
-
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < label.length; i++) {
             FluidRow row = new FluidRow();
-            for (int j = 0; j < 4; j++) {
-                final String id = i + "-" + j;
+            for (int j = 0; j < label[i].length; j++) {
+                Column col = new Column(12 / label[i].length);
 
-                Column col = new Column(3);
+                final Label l = label[i][j];
+                final String id = l.getText();
 
-                final Label l = new Label(id);
-                l.addStyleName("dnd-label");
                 l.getElement().setDraggable(Element.DRAGGABLE_TRUE);
-
                 l.addDragStartHandler(new DragStartHandler() {
 
                     public void onDragStart(DragStartEvent event) {
@@ -74,16 +61,9 @@ public class NativeSample extends Composite {
                         l.removeStyleName("dnd-label-over");
                         appendStatus("drop : " + id);
 
-
-                        Label sourceLabel = labels.get(event.getData("sourceId"));
-
-                        String text = l.getText();
-                        l.setText(sourceLabel.getText());
-                        sourceLabel.setText(text);
+                        swapLabel(l, getLabel(event.getData("sourceId")));
                     }
                 });
-
-                labels.put(id, l);
                 col.add(l);
                 row.add(col);
             }
@@ -102,8 +82,9 @@ public class NativeSample extends Composite {
         panel.add(status);
     }
 
-
-    private void appendStatus(String str) {
-        status.setHTML(str + "<br>" + status.getHTML());
+    private void swapLabel(Label l, Label sourceLabel) {
+        String text = l.getText();
+        l.setText(sourceLabel.getText());
+        sourceLabel.setText(text);
     }
 }

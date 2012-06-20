@@ -1,7 +1,6 @@
 package com.azuki3.gwt.client;
 
 import com.github.gwtbootstrap.client.ui.Nav;
-import com.github.gwtbootstrap.client.ui.NavCollapse;
 import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
