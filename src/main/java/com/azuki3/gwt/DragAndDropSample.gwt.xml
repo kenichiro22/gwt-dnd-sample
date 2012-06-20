@@ -8,5 +8,6 @@
 	<!-- <inherits name="com.google.gwt.user.theme.chrome.Chrome"/> -->
 	<!-- <inherits name="com.google.gwt.user.theme.dark.Dark" /> -->
 	<inherits name='com.github.gwtbootstrap.Bootstrap' />
+        <inherits name='com.google.gwt.query.Query'/>
 	<entry-point class="com.azuki3.gwt.client.DragAndDrop" />
 </module>
