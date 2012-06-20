@@ -1,0 +1,36 @@
+/* 
+    Document   : dnd.css
+    Created on : 2012/06/19, 22:57:48
+    Author     : ktana
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.dnd-label, .dnd-label-over {
+    text-align: center;
+    padding: 20px;
+    margin: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    border-color: lightgray;
+    border-width: 1px;
+}
+
+.dnd-label-drag{
+    border-style: dashed;    
+}
+
+.dnd-label {
+    background-color: #EEE;
+    border-style: solid;
+}
+
+.dnd-label-over {
+    background-color: #ffa;
+    border-style: solid;
+}
