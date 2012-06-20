@@ -68,14 +68,17 @@
         <dependency>
             <groupId>com.googlecode.gwtquery.plugins</groupId>
             <artifactId>draggable-plugin</artifactId>
-            <version>1.0.2</version>
-            <scope>provided</scope>
+            <version>1.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.gwtquery.plugins</groupId>
             <artifactId>droppable-plugin</artifactId>
             <version>1.0.6</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwtquery.plugins</groupId>
+            <artifactId>commonui-plugin</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 
