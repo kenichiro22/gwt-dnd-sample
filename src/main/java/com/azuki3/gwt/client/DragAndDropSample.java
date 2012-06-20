@@ -23,12 +23,9 @@ public class DragAndDropSample extends Composite {
     @UiField
     HTMLPanel container;
     private Map<String, Label> labels = new HashMap<String, Label>();
-    private HTML status;
 
     public DragAndDropSample() {
         initWidget(uiBinder.createAndBindUi(this));
-
-        status = new HTML();
 
         for (int i = 0; i < 4; i++) {
             FluidRow row = new FluidRow();
@@ -45,28 +42,25 @@ public class DragAndDropSample extends Composite {
 
                     public void onDragStart(DragStartEvent event) {
                         // To enable DnD , some data is needed
-                        event.setData("text", "Hello!");
-                        
-                        
-//                        appendStatus("start drag: " + id);
+                        event.setData("text", id);
+                        event.setData("sourceId", id);
+
                     }
                 });
 
-//                l.addDragEnterHandler(new DragEnterHandler() {
-//
-//                    public void onDragEnter(DragEnterEvent event) {
-//                        l.addStyleName("dnd-label-over");
-//
-//                        appendStatus("drag enter: " + id);
-//
-//                    }
-//                });
-                
+                l.addDragOverHandler(new DragOverHandler() {
+
+                    public void onDragOver(DragOverEvent event) {
+                        if (!l.getStyleName().contains("dnd-label-over")) {
+                            l.addStyleName("dnd-label-over");
+                        }
+                    }
+                });
+
                 l.addDragLeaveHandler(new DragLeaveHandler() {
 
                     public void onDragLeave(DragLeaveEvent event) {
                         l.removeStyleName("dnd-label-over");
-                        appendStatus("drag leave: " + id);
                     }
                 });
 
@@ -75,12 +69,11 @@ public class DragAndDropSample extends Composite {
                     public void onDrop(DropEvent event) {
                         event.preventDefault();
 
-//                        appendStatus("drop: " + id);
-//
-//                        l.removeStyleName("dnd-label-over");
+                        l.removeStyleName("dnd-label-over");
 
-                        Label sourceLabel = labels.get(event.getData("text"));
-                        
+
+                        Label sourceLabel = labels.get(event.getData("sourceId"));
+
                         String text = l.getText();
                         l.setText(sourceLabel.getText());
                         sourceLabel.setText(text);
@@ -93,13 +86,6 @@ public class DragAndDropSample extends Composite {
             }
             row.getElement().getStyle().setMarginBottom(10, Unit.PX);
             container.add(row);
-            container.add(status);
         }
-
-    }
-
-    private void appendStatus(String string) {
-
-//        status.setHTML(string + "<br/>" + status.getHTML());
     }
 }
