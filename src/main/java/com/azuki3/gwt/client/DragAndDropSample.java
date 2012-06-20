@@ -1,7 +1,9 @@
 package com.azuki3.gwt.client;
 
+import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.FluidRow;
+import com.github.gwtbootstrap.client.ui.Modal;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
@@ -96,6 +98,15 @@ public class DragAndDropSample extends Composite {
             container.add(row);
         }
         container.add(status);
+
+        if (!DragDropEventBase.isSupported()) {
+            Modal alert = new Modal(false);
+            alert.setTitle("Oops!");
+            alert.add(new Label("Native drag and drop feature is not supported !"));
+            
+            
+            alert.show();
+        }
     }
 
     private void appendStatus(String str) {
