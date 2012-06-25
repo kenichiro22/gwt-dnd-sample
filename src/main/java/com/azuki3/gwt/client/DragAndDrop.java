@@ -11,6 +11,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -36,20 +37,20 @@ public class DragAndDrop extends Composite implements EntryPoint, ValueChangeHan
         History.addValueChangeHandler(this);
 
         // 初期状態での履歴トークンを処理する
-        if (!History.getToken().isEmpty()) {
-            History.fireCurrentHistoryState();
-        }
+        History.fireCurrentHistoryState();        
     }
 
     public void onValueChange(ValueChangeEvent<String> event) {
         if (container.getWidgetCount() > 0) {
             container.remove(0);
         }
-        GWT.log(event.getValue());
+
         if (TOKEN_NATIVE_DND.equals(event.getValue())) {
             container.add(new NativeSample());
         } else if (TOKEN_GWT_QUERY.equals(event.getValue())) {
             container.add(new GwtQuerySample());
+        } else {
+            container.add(new NativeSample());
         }
     }
 

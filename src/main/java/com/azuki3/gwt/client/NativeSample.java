@@ -10,18 +10,22 @@ import com.google.gwt.user.client.ui.Label;
 
 public class NativeSample extends AbstractSample {
 
+    protected Label[][] label = new Label[4][4];
+
     public NativeSample() {
         initWidget(this.panel);
-        init();
 
         for (int i = 0; i < label.length; i++) {
             FluidRow row = new FluidRow();
             for (int j = 0; j < label[i].length; j++) {
                 Column col = new Column(12 / label[i].length);
 
-                final Label l = label[i][j];
-                final String id = l.getText();
+                final String id = i + "-" + j;
 
+                label[i][j] = new Label(id);
+                label[i][j].setStyleName("dnd-label");
+
+                final Label l = label[i][j];
                 l.getElement().setDraggable(Element.DRAGGABLE_TRUE);
                 l.addDragStartHandler(new DragStartHandler() {
 
@@ -82,9 +86,9 @@ public class NativeSample extends AbstractSample {
         panel.add(status);
     }
 
-    private void swapLabel(Label l, Label sourceLabel) {
-        String text = l.getText();
-        l.setText(sourceLabel.getText());
-        sourceLabel.setText(text);
+    
+    private Label getLabel(String id) {
+        String[] pos = id.split("-");
+        return label[Integer.parseInt(pos[0])][Integer.parseInt(pos[1])];
     }
 }

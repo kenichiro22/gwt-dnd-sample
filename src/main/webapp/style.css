@@ -34,3 +34,15 @@ root {
     background-color: #ffa;
     border-style: solid;
 }
+
+.dnd-droppable {
+    background-color: blanchedalmond;
+    -webkit-border-radius: 5px;
+    
+    border-color: lightgray;
+    border-width: 1px;
+    
+    text-align: center;
+    
+    margin: 5px;
+}
