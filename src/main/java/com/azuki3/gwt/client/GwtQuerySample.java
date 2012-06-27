@@ -36,6 +36,9 @@ public class GwtQuerySample extends AbstractSample {
     public GwtQuerySample() {
         initWidget(this.panel);
 
+        this.panel.add(new Label("Gwtquery Drag and drop sample"));
+
+
         for (int i = 0; i < label.length; i++) {
             FluidRow row = new FluidRow();
             for (int j = 0; j < label[i].length; j++) {

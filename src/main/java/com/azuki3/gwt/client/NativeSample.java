@@ -13,7 +13,8 @@ public class NativeSample extends AbstractSample {
     protected Label[][] label = new Label[4][4];
 
     public NativeSample() {
-        initWidget(this.panel);
+        initWidget(this.panel);        
+        this.panel.add(new Label("GWT Native Drag and drop sample"));
 
         for (int i = 0; i < label.length; i++) {
             FluidRow row = new FluidRow();
